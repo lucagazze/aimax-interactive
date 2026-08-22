@@ -141,11 +141,6 @@ p { margin: 0; text-wrap: pretty; }
 }
 .btn-primary:hover { background: var(--violet-2); color: #fff; }
 .btn-sm { padding: 9px 18px; font-size: 14px; min-height: 44px; }
-.btn-ghost {
-  background: #fff; color: var(--ink); border-color: var(--line);
-  padding: 16px 28px; font-size: 17px; min-height: 56px;
-}
-.btn-ghost:hover { background: var(--surface); color: var(--ink); }
 .btn-light {
   background: #fff; color: var(--violet); padding: 17px 30px;
   font-size: 17px; min-height: 56px;
@@ -401,7 +396,7 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   .brand { gap: 8px; }
   .brand-name { font-size: 13px; white-space: nowrap; }
   .nav .btn-sm { padding: 9px 15px; font-size: 13.5px; }
-  .btn-primary, .btn-ghost, .btn-light { font-size: 16px; padding-left: 22px; padding-right: 22px; }
+  .btn-primary, .btn-light { font-size: 16px; padding-left: 22px; padding-right: 22px; }
   .logo-celda { flex: 0 0 132px; }
   .case { padding: 24px 20px; }
   .spec { padding: 22px 20px; }
@@ -603,7 +598,6 @@ def build_body():
     a('<div class="hero-cta">')
     a('<a class="btn btn-primary" href="%s" target="_blank" rel="noopener">%s Escribinos por WhatsApp</a>'
       % (WA_HREF, WA_ICO))
-    a('<a class="btn btn-ghost" href="#casos">Ver para qué sirve</a>')
     a('</div>')
     a('<p class="hero-micro">Te responde Alejo, directo. Sin formularios ni call center.</p>')
     a('</div></section>')
