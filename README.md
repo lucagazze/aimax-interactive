@@ -10,15 +10,54 @@ página, un solo objetivo, sin menú y sin salidas laterales.
 
 ```
 public/          lo único que se publica
-  index.html     la página, estática y sin dependencias en runtime
+  index.html         la página, estática y sin dependencias en runtime
+  favicon.ico        16/32/48 en un solo archivo
+  favicon-16/32.png  apple-touch-icon.png  icon-192.png  icon-512.png
+  site.webmanifest   robots.txt   sitemap.xml
 src/             fuentes; no se despliegan (ver .vercelignore)
   build_landing.py   genera public/index.html y los artboards
   prep_logos.py      normaliza los logos de clientes
+  prep_marca.py      genera favicons e imagen de Open Graph
   subir_supabase.py  sube los assets al bucket
-  assets/            imágenes fuente
+  assets/            imágenes fuente + og-image.jpg
   canvas/            artboards del canvas de diseño (git-ignored)
 vercel.json      outputDirectory: public, cleanUrls y headers
 ```
+
+## SEO
+
+Todo sale de `build_landing.py`, no hay nada escrito a mano en el `<head>`.
+
+- `title` de 50 caracteres y `description` de 138: por debajo del corte de
+  Google en ambos casos.
+- `canonical`, `robots`, `og:*` completos, `twitter:card` de imagen grande,
+  `robots.txt` y `sitemap.xml`.
+- **Open Graph**: tarjeta de 1200×630 con el logo, servida desde Supabase con
+  URL absoluta, así el preview anda aun antes de conectar el dominio.
+- **JSON-LD** con `Organization`, `WebSite`, `WebPage` y `VideoObject`. Solo
+  datos verificados: sin precios ni reseñas inventadas, que además Google
+  penaliza.
+- Imágenes con `width`/`height` y `alt`; todas diferidas menos el poster del
+  video, que va con `fetchpriority="high"`.
+
+### Cambiar el dominio
+
+`SITIO`, arriba de `src/build_landing.py`, es la única línea a tocar: de ahí
+salen el `canonical`, el `og:url` y el `sitemap.xml`. Hoy apunta al dominio por
+defecto de Vercel. Si se conecta uno propio, se cambia esa línea y se corre
+`python src/build_landing.py`.
+
+### Regenerar los íconos
+
+```bash
+python src/prep_marca.py        # favicons + og-image.jpg
+python src/subir_supabase.py    # sube og-image.jpg al bucket
+```
+
+El logo original de AIMAX es un JPEG de 150×150 (foto de perfil de Instagram),
+muy chico para un ícono de 512. `prep_marca.py` lo reconstruye vectorialmente
+respetando las proporciones medidas sobre el original: fondo `#1e028a`, radio
+del 22,5 %, y el texto ocupando el 89 % del ancho.
 
 ## Deploy en Vercel
 

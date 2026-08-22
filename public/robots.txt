@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aimax-interactive.vercel.app/sitemap.xml

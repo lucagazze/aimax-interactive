@@ -35,6 +35,27 @@ CDN = ("https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public"
        "/algoritmia-img/aimax")
 VSL_MP4 = CDN + "/vsl-aimax.mp4"
 
+# ── SEO ─────────────────────────────────────────────────────────────────────
+# SITIO es el dominio final. Hoy apunta al dominio por defecto que le da
+# Vercel al repo. Si se conecta un dominio propio, se cambia SOLO acá:
+# de esto salen el canonical, el og:url y el sitemap.
+SITIO = "https://aimax-interactive.vercel.app"
+
+# Título hasta ~60 y descripción hasta ~155: pasado eso Google los corta.
+# La palabra clave va primero y la marca al final.
+TITULO = "Pantallas interactivas con IA en Argentina | AIMAX"
+DESC = ("Escribís a mano y la IA lo reconoce. Android y Windows en un solo "
+        "equipo. Ya instalada en YPF San Lorenzo, Terminal 6 y los Juegos "
+        "Odesur.")
+OG_TITULO = "AIMAX Interactive — La pantalla interactiva N.º 1 del mercado"
+OG_DESC = ("Escribís a mano y la IA lo reconoce. Ya instalada en YPF San "
+           "Lorenzo, Terminal 6 y los Juegos Odesur.")
+OG_IMG = CDN + "/og-image.jpg"
+
+# El video que se sube: 58,5 s reales, medidos con ffprobe.
+VSL_SEGUNDOS = 58
+VSL_SUBIDO = "2026-08-22"
+
 IMAGENES = [
     "vsl-poster.jpg",
     "demo-escritura.jpg",
@@ -48,7 +69,80 @@ IMAGENES = [
     "logo-tecnoteca.png",
     "logo-cimaes.png",
     "logo-baravalle.png",
+    "og-image.jpg",
 ]
+
+
+def jsonld():
+    """Datos estructurados. Solo hechos verificados: nada de precios ni
+    reseñas inventadas, que además Google penaliza."""
+    grafo = [
+        {
+            "@type": "Organization",
+            "@id": SITIO + "/#organizacion",
+            "name": "AIMAX Interactive",
+            "alternateName": "AIMAX",
+            "url": SITIO + "/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": SITIO + "/icon-512.png",
+                "width": 512, "height": 512,
+            },
+            "image": OG_IMG,
+            "description": ("Pantallas interactivas con IA para aulas, salas de "
+                            "reuniones, estudios de arquitectura y organismos "
+                            "públicos."),
+            "telephone": "+54 9 3413 88-9575",
+            "areaServed": {"@type": "Country", "name": "Argentina"},
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Rosario",
+                "addressRegion": "Santa Fe",
+                "addressCountry": "AR",
+            },
+            "sameAs": [IG, "https://aimax.com.ar"],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "sales",
+                "telephone": "+54 9 3413 88-9575",
+                "availableLanguage": ["Spanish"],
+                "areaServed": "AR",
+            },
+        },
+        {
+            "@type": "WebSite",
+            "@id": SITIO + "/#sitio",
+            "url": SITIO + "/",
+            "name": "AIMAX Interactive",
+            "inLanguage": "es-AR",
+            "publisher": {"@id": SITIO + "/#organizacion"},
+        },
+        {
+            "@type": "WebPage",
+            "@id": SITIO + "/#pagina",
+            "url": SITIO + "/",
+            "name": TITULO,
+            "description": DESC,
+            "inLanguage": "es-AR",
+            "isPartOf": {"@id": SITIO + "/#sitio"},
+            "about": {"@id": SITIO + "/#organizacion"},
+            "primaryImageOfPage": {"@type": "ImageObject", "url": CDN + "/vsl-poster.jpg"},
+        },
+        {
+            "@type": "VideoObject",
+            "name": "La pantalla interactiva AIMAX funcionando",
+            "description": ("Demostración real de la pantalla interactiva AIMAX: "
+                            "escritura a mano reconocida por IA, anotación en vivo "
+                            "y el módulo Windows."),
+            "thumbnailUrl": [CDN + "/vsl-poster.jpg"],
+            "contentUrl": VSL_MP4,
+            "uploadDate": VSL_SUBIDO,
+            "duration": "PT%dS" % VSL_SEGUNDOS,
+            "publisher": {"@id": SITIO + "/#organizacion"},
+        },
+    ]
+    return json.dumps({"@context": "https://schema.org", "@graph": grafo},
+                      ensure_ascii=False, separators=(",", ":"))
 
 FUENTE = ("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:"
           "wght@400;500;600;700;800;900&display=swap")
@@ -589,7 +683,7 @@ def build_body():
     # ── VSL — va inmediatamente debajo del H1
     a('<div class="vsl"><div class="player" id="vsl" role="button" tabindex="0" '
       'aria-label="Reproducir el video de la pantalla AIMAX funcionando">')
-    a('<img src="@@IMG:vsl-poster.jpg@@" alt="Pantalla interactiva AIMAX instalada, con una fórmula escrita a mano">')
+    a('<img src="@@IMG:vsl-poster.jpg@@" width="1180" height="663" fetchpriority="high" decoding="async" alt="Pantalla interactiva AIMAX instalada, con una fórmula escrita a mano">')
     a('<div class="player-veil"><div class="play">%s</div>' % ICO_PLAY)
     a('<div class="play-label">Mirá la pantalla funcionando &middot; 1 min</div></div>')
     a('</div></div>')
@@ -634,7 +728,7 @@ def build_body():
           % (tagico('<path d="M20 6 9 17l-5-5"/>'), f['tag']))
         a('<h3>%s</h3><p>%s</p>' % (f['titulo'], f['texto']))
         a('</div>')
-        a('<div class="row-media"><img src="@@IMG:%s@@" alt="%s"></div>' % (f['img'], f['alt']))
+        a('<div class="row-media"><img src="@@IMG:%s@@" width="760" height="427" loading="lazy" decoding="async" alt="%s"></div>' % (f['img'], f['alt']))
         a('</div>')
     a('</div></div></section>')
 
@@ -673,6 +767,7 @@ def build_body():
       '<small>[NOMBRE Y CARGO — PENDIENTE]</small></div>')
     a('</div>')
     a('<div class="install-media"><img src="@@IMG:instalacion.jpg@@" '
+      'width="900" height="506" loading="lazy" decoding="async" '
       'alt="Pantalla interactiva AIMAX instalada en una sala de reuniones"></div>')
     a('</div></div></section>')
 
@@ -776,17 +871,48 @@ PROD = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AIMAX Interactive — Pantallas interactivas con IA para aulas y salas de reuniones</title>
-<meta name="description" content="La pantalla interactiva N.º 1 del mercado ya está en Argentina. Escritura a mano reconocida por IA, Android y Windows en un solo equipo. Ya instalada en YPF San Lorenzo, Terminal6 y los Juegos Odesur.">
-<meta property="og:title" content="AIMAX Interactive — Pantallas interactivas con IA">
-<meta property="og:description" content="Escribís a mano y la IA lo reconoce. Ya instalada en YPF San Lorenzo, Terminal6 y los Juegos Odesur.">
+
+<title>%(titulo)s</title>
+<meta name="description" content="%(desc)s">
+<link rel="canonical" href="%(sitio)s/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="AIMAX Interactive">
+<meta name="geo.region" content="AR-S">
+<meta name="geo.placename" content="Rosario, Santa Fe">
+
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="AIMAX Interactive">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="%(sitio)s/">
+<meta property="og:title" content="%(og_titulo)s">
+<meta property="og:description" content="%(og_desc)s">
+<meta property="og:image" content="%(og_img)s">
+<meta property="og:image:secure_url" content="%(og_img)s">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AIMAX Interactive — pantallas interactivas con IA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="%(og_titulo)s">
+<meta name="twitter:description" content="%(og_desc)s">
+<meta name="twitter:image" content="%(og_img)s">
+<meta name="twitter:image:alt" content="AIMAX Interactive — pantallas interactivas con IA">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#1e028a">
+<meta name="apple-mobile-web-app-title" content="AIMAX">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://czocbnyoenjbpxmcqobn.supabase.co">
 <link rel="stylesheet" href="%(fuente)s">
 <style>%(css)s</style>
+<script type="application/ld+json">%(jsonld)s</script>
 </head>
 <body>
 %(body)s
@@ -817,7 +943,42 @@ PROD = """<!doctype html>
 
 with open(os.path.join(PUBLICO, "index.html"), 'w', encoding='utf-8') as fh:
     fh.write(PROD % dict(fuente=FUENTE, css=con_cdn(HOJA),
-                         body=con_cdn(BODY), video=VSL_MP4))
+                         body=con_cdn(BODY), video=VSL_MP4,
+                         titulo=TITULO, desc=DESC, sitio=SITIO,
+                         og_titulo=OG_TITULO, og_desc=OG_DESC, og_img=OG_IMG,
+                         jsonld=jsonld()))
+
+# ── Archivos de raíz del sitio ──────────────────────────────────────────────
+with open(os.path.join(PUBLICO, "robots.txt"), 'w', encoding='utf-8') as fh:
+    fh.write("User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % SITIO)
+
+with open(os.path.join(PUBLICO, "sitemap.xml"), 'w', encoding='utf-8') as fh:
+    fh.write('<?xml version="1.0" encoding="UTF-8"?>\n'
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+             '  <url>\n'
+             '    <loc>%s/</loc>\n'
+             '    <changefreq>monthly</changefreq>\n'
+             '    <priority>1.0</priority>\n'
+             '  </url>\n'
+             '</urlset>\n' % SITIO)
+
+with open(os.path.join(PUBLICO, "site.webmanifest"), 'w', encoding='utf-8') as fh:
+    json.dump({
+        "name": "AIMAX Interactive",
+        "short_name": "AIMAX",
+        "description": OG_DESC,
+        "lang": "es-AR",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "#1e028a",
+        "icons": [
+            {"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"},
+            {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"},
+            {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png",
+             "purpose": "maskable"},
+        ],
+    }, fh, ensure_ascii=False, indent=2)
 
 for carpeta, f in ((CANVAS, "Main.dc.html"), (CANVAS, "Mobile.dc.html"),
                    (CANVAS, "canvas.json"), (PUBLICO, "index.html")):
