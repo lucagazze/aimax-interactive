@@ -66,8 +66,14 @@ CSS = """
 
 * { box-sizing: border-box; }
 
+/* Nada puede ser más ancho que la pantalla ni generar scroll horizontal.
+   `clip` y no `hidden`: hidden crea un contenedor de scroll y rompe el
+   position:sticky del navbar. */
+html { max-width: 100%; overflow-x: clip; }
+
 body {
   margin: 0;
+  max-width: 100%; overflow-x: clip;
   background: #ffffff;
   color: var(--ink);
   font-family: "Schibsted Grotesk", -apple-system, BlinkMacSystemFont,
@@ -82,7 +88,8 @@ body {
 a { color: var(--violet-ink); text-decoration: none; }
 a:hover { color: var(--violet-2); }
 
-img { max-width: 100%; display: block; }
+img, video, svg, iframe { max-width: 100%; }
+img { display: block; }
 
 h1, h2, h3 { margin: 0; letter-spacing: -0.035em; line-height: 1.06; font-weight: 800; }
 p { margin: 0; text-wrap: pretty; }
@@ -147,6 +154,7 @@ h1 {
   letter-spacing: -0.038em; word-spacing: 0.04em;
   text-wrap: balance;
 }
+h1 .h1-a { display: block; }
 h1 em { font-style: normal; color: var(--violet); display: block; }
 .hero-cta {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
@@ -346,7 +354,10 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   .wrap, .nav-in { padding: 0 20px; }
   .brand-name { font-size: 15px; }
   .hero { padding: 48px 0 0; }
-  h1 { max-width: 100%; letter-spacing: -0.035em; }
+  /* En mobile el título va en DOS líneas: "La pantalla interactiva" entera
+     arriba y "N.º 1 del mercado" abajo. El tamaño se ata al ancho de pantalla
+     para que la primera línea entre sin cortarse ni desbordar. */
+  h1 { max-width: 100%; letter-spacing: -0.035em; font-size: min(7.6vw, 44px); }
   h2.una-linea { white-space: normal; }
   .wa-float { right: 16px; bottom: 16px; width: 54px; height: 54px; }
   .wa-float svg { width: 27px; height: 27px; }
@@ -380,10 +391,9 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 /* ── Teléfonos angostos (iPhone SE y similares) ─────────────────────────── */
 @media (max-width: 400px) {
   .wrap, .nav-in { padding: 0 16px; }
-  .brand-name { font-size: 14px; }
-  /* el CTA del navbar queda como ícono: el texto no entra y ya hay botón flotante */
-  .nav .btn-sm { padding: 0; width: 44px; min-width: 44px; }
-  .nav .btn-sm span { display: none; }
+  .brand { gap: 8px; }
+  .brand-name { font-size: 13px; white-space: nowrap; }
+  .nav .btn-sm { padding: 9px 15px; font-size: 13.5px; }
   .btn-primary, .btn-ghost, .btn-light { font-size: 16px; padding-left: 22px; padding-right: 22px; }
   .logo-celda { flex: 0 0 132px; }
   .case { padding: 24px 20px; }
@@ -563,15 +573,16 @@ def build_body():
     a('<header class="nav"><div class="nav-in">')
     a('<div class="brand"><div class="mark">AIMAX</div>')
     a('<div class="brand-name">Pantallas interactivas</div></div>')
-    a('<a class="btn btn-primary btn-sm" href="%s" target="_blank" rel="noopener" '
-      'aria-label="Escribinos por WhatsApp">%s<span>WhatsApp</span></a>' % (WA_HREF, WA_ICO))
+    a('<a class="btn btn-primary btn-sm" href="%s" target="_blank" rel="noopener">'
+      'Contactar</a>' % WA_HREF)
     a('</div></header>')
 
     a('<main>')
 
     # ── HERO
     a('<section class="hero"><div class="wrap">')
-    a('<h1>La pantalla interactiva <em>N.º&nbsp;1 del mercado</em></h1>')
+    a('<h1><span class="h1-a">La pantalla interactiva</span>'
+      '<em>N.º&nbsp;1 del mercado</em></h1>')
 
     # ── VSL — va inmediatamente debajo del H1
     a('<div class="vsl"><div class="player" id="vsl" role="button" tabindex="0" '

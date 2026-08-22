@@ -29,8 +29,14 @@
 
 * { box-sizing: border-box; }
 
+/* Nada puede ser más ancho que la pantalla ni generar scroll horizontal.
+   `clip` y no `hidden`: hidden crea un contenedor de scroll y rompe el
+   position:sticky del navbar. */
+html { max-width: 100%; overflow-x: clip; }
+
 body {
   margin: 0;
+  max-width: 100%; overflow-x: clip;
   background: #ffffff;
   color: var(--ink);
   font-family: "Schibsted Grotesk", -apple-system, BlinkMacSystemFont,
@@ -45,7 +51,8 @@ body {
 a { color: var(--violet-ink); text-decoration: none; }
 a:hover { color: var(--violet-2); }
 
-img { max-width: 100%; display: block; }
+img, video, svg, iframe { max-width: 100%; }
+img { display: block; }
 
 h1, h2, h3 { margin: 0; letter-spacing: -0.035em; line-height: 1.06; font-weight: 800; }
 p { margin: 0; text-wrap: pretty; }
@@ -110,6 +117,7 @@ h1 {
   letter-spacing: -0.038em; word-spacing: 0.04em;
   text-wrap: balance;
 }
+h1 .h1-a { display: block; }
 h1 em { font-style: normal; color: var(--violet); display: block; }
 .hero-cta {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
@@ -309,7 +317,10 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   .wrap, .nav-in { padding: 0 20px; }
   .brand-name { font-size: 15px; }
   .hero { padding: 48px 0 0; }
-  h1 { max-width: 100%; letter-spacing: -0.035em; }
+  /* En mobile el título va en DOS líneas: "La pantalla interactiva" entera
+     arriba y "N.º 1 del mercado" abajo. El tamaño se ata al ancho de pantalla
+     para que la primera línea entre sin cortarse ni desbordar. */
+  h1 { max-width: 100%; letter-spacing: -0.035em; font-size: min(7.6vw, 44px); }
   h2.una-linea { white-space: normal; }
   .wa-float { right: 16px; bottom: 16px; width: 54px; height: 54px; }
   .wa-float svg { width: 27px; height: 27px; }
@@ -343,10 +354,9 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 /* ── Teléfonos angostos (iPhone SE y similares) ─────────────────────────── */
 @media (max-width: 400px) {
   .wrap, .nav-in { padding: 0 16px; }
-  .brand-name { font-size: 14px; }
-  /* el CTA del navbar queda como ícono: el texto no entra y ya hay botón flotante */
-  .nav .btn-sm { padding: 0; width: 44px; min-width: 44px; }
-  .nav .btn-sm span { display: none; }
+  .brand { gap: 8px; }
+  .brand-name { font-size: 13px; white-space: nowrap; }
+  .nav .btn-sm { padding: 9px 15px; font-size: 13.5px; }
   .btn-primary, .btn-ghost, .btn-light { font-size: 16px; padding-left: 22px; padding-right: 22px; }
   .logo-celda { flex: 0 0 132px; }
   .case { padding: 24px 20px; }
@@ -391,11 +401,11 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 <header class="nav"><div class="nav-in">
 <div class="brand"><div class="mark">AIMAX</div>
 <div class="brand-name">Pantallas interactivas</div></div>
-<a class="btn btn-primary btn-sm" href="https://wa.me/5493413889575?text=Hola%20AIMAX%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20pantallas%20interactivas" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg><span>WhatsApp</span></a>
+<a class="btn btn-primary btn-sm" href="https://wa.me/5493413889575?text=Hola%20AIMAX%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20pantallas%20interactivas" target="_blank" rel="noopener">Contactar</a>
 </div></header>
 <main>
 <section class="hero"><div class="wrap">
-<h1>La pantalla interactiva <em>N.º&nbsp;1 del mercado</em></h1>
+<h1><span class="h1-a">La pantalla interactiva</span><em>N.º&nbsp;1 del mercado</em></h1>
 <div class="vsl"><div class="player" id="vsl" role="button" tabindex="0" aria-label="Reproducir el video de la pantalla AIMAX funcionando">
 <img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/vsl-poster.jpg" alt="Pantalla interactiva AIMAX instalada, con una fórmula escrita a mano">
 <div class="player-veil"><div class="play"><svg width="28" height="32" viewBox="0 0 28 32" fill="#1d1d1f" aria-hidden="true"><path d="M27 14.27a2 2 0 0 1 0 3.46L3 31.6A2 2 0 0 1 0 29.87V2.13A2 2 0 0 1 3 .4l24 13.87Z"/></svg></div>
