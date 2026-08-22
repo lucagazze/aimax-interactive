@@ -37,7 +37,7 @@ def leer_key():
 
 KEY = leer_key()
 
-AQUI = os.path.dirname(os.path.abspath(__file__))
+AQUI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 SCRATCH = (r"C:\Users\lucag\AppData\Local\Temp\claude\c--Users-lucag--claude"
            r"\6a3b4ef6-9780-4a03-8b1c-f4fff44207c0\scratchpad")
 

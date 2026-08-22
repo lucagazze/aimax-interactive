@@ -1,10 +1,9 @@
 # Artefactos del canvas de diseño (los regenera build_landing.py)
-*.dc.html
-canvas.json
+src/canvas/
 landing-aimax.html
 
 # Salidas de control
-_check_logos.png
+src/_check_logos.png
 
 # Nunca: claves
 .env
@@ -15,3 +14,4 @@ __pycache__/
 *.pyc
 Thumbs.db
 .DS_Store
+.vercel

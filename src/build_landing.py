@@ -3,10 +3,10 @@
 Landing AIMAX Interactive — generador.
 
 Una sola fuente de verdad (CSS + BODY) que emite:
-  Main.dc.html        artboard desktop 1440 para el canvas de diseño
-  Mobile.dc.html      artboard mobile 390 para el canvas de diseño
-  canvas.json         layout del canvas
-  index.html          archivo de producción (assets desde Supabase Storage)
+  public/index.html   la página que sirve Vercel (assets desde Supabase)
+  src/canvas/Main.dc.html    artboard desktop 1440 del canvas de diseño
+  src/canvas/Mobile.dc.html  artboard mobile 390 del canvas de diseño
+  src/canvas/canvas.json     layout del canvas
 
 Datos: aimax.com.ar (bundle + assets reales), info.txt del cliente y
 la propuesta AIMAX_Propuesta_Algoritmia_2026-08-19.
@@ -14,7 +14,14 @@ la propuesta AIMAX_Propuesta_Algoritmia_2026-08-19.
 import json
 import os
 
-AQUI = os.path.dirname(os.path.abspath(__file__))
+AQUI = os.path.dirname(os.path.abspath(__file__))        # src/
+RAIZ = os.path.dirname(AQUI)                             # raíz del repo
+ASSETS = os.path.join(AQUI, "assets")                    # imágenes fuente
+PUBLICO = os.path.join(RAIZ, "public")                   # lo que sirve Vercel
+CANVAS = os.path.join(AQUI, "canvas")                    # artboards del diseño
+
+for _d in (PUBLICO, CANVAS):
+    os.makedirs(_d, exist_ok=True)
 
 # ── Datos que hay que confirmar con el cliente ──────────────────────────────
 WA_NUMERO = "5493413889575"          # +54 9 3413 88-9575, confirmado por Luca 22-08-2026
@@ -470,7 +477,7 @@ def css_logos():
     def bloque(escala, celda, sangria=""):
         filas = []
         for archivo, clase, _alt, alto in LOGOS:
-            with Image.open(os.path.join(AQUI, archivo)) as im:
+            with Image.open(os.path.join(ASSETS, archivo)) as im:
                 razon = im.width / im.height
             h = round(alto * escala)
             w = round(h * razon)
@@ -741,7 +748,7 @@ DC = """<!doctype html>
 """
 
 for archivo in ("Main.dc.html", "Mobile.dc.html"):
-    with open(os.path.join(AQUI, archivo), 'w', encoding='utf-8') as fh:
+    with open(os.path.join(CANVAS, archivo), 'w', encoding='utf-8') as fh:
         fh.write(DC % (FUENTE, con_nombres(HOJA), con_nombres(BODY)))
 
 # ── canvas.json
@@ -766,7 +773,7 @@ canvas = {
     ],
     "launch": {"view": "focused", "file": "Main.dc.html"},
 }
-with open(os.path.join(AQUI, "canvas.json"), 'w', encoding='utf-8') as fh:
+with open(os.path.join(CANVAS, "canvas.json"), 'w', encoding='utf-8') as fh:
     json.dump(canvas, fh, ensure_ascii=False, indent=2)
 
 # ── Archivo de producción
@@ -814,9 +821,11 @@ PROD = """<!doctype html>
 </html>
 """
 
-with open(os.path.join(AQUI, "index.html"), 'w', encoding='utf-8') as fh:
+with open(os.path.join(PUBLICO, "index.html"), 'w', encoding='utf-8') as fh:
     fh.write(PROD % dict(fuente=FUENTE, css=con_cdn(HOJA),
                          body=con_cdn(BODY), video=VSL_MP4))
 
-for f in ("Main.dc.html", "Mobile.dc.html", "canvas.json", "index.html"):
-    print("%-20s %8.1f KB" % (f, os.path.getsize(os.path.join(AQUI, f)) / 1024))
+for carpeta, f in ((CANVAS, "Main.dc.html"), (CANVAS, "Mobile.dc.html"),
+                   (CANVAS, "canvas.json"), (PUBLICO, "index.html")):
+    ruta = os.path.join(carpeta, f)
+    print("%-24s %8.1f KB" % (os.path.relpath(ruta, RAIZ), os.path.getsize(ruta) / 1024))
