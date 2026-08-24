@@ -47,7 +47,7 @@ TITULO = "Pantallas interactivas con IA en Argentina | AIMAX"
 DESC = ("Escribís a mano y la IA lo reconoce. Android y Windows en un solo "
         "equipo. Ya instalada en YPF San Lorenzo, Terminal 6 y los Juegos "
         "Odesur.")
-OG_TITULO = "AIMAX Interactive — La pantalla interactiva N.º 1 del mercado"
+OG_TITULO = "AIMAX Interactive — La pantalla interactiva líder en Argentina"
 OG_DESC = ("Escribís a mano y la IA lo reconoce. Ya instalada en YPF San "
            "Lorenzo, Terminal 6 y los Juegos Odesur.")
 OG_IMG = CDN + "/og-image.jpg"
@@ -69,6 +69,7 @@ IMAGENES = [
     "logo-tecnoteca.png",
     "logo-cimaes.png",
     "logo-baravalle.png",
+    "logo-dos-hermanos.png",
     "og-image.jpg",
 ]
 
@@ -451,7 +452,7 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   .brand-name { font-size: 15px; }
   .hero { padding: 48px 0 0; }
   /* En mobile el título va en DOS líneas: "La pantalla interactiva" entera
-     arriba y "N.º 1 del mercado" abajo. El tamaño se ata al ancho de pantalla
+     arriba y "líder en Argentina" abajo. El tamaño se ata al ancho de pantalla
      para que la primera línea entre sin cortarse ni desbordar. */
   h1 { max-width: 100%; letter-spacing: -0.035em; font-size: min(7.6vw, 44px); }
   h2.una-linea { white-space: normal; }
@@ -546,13 +547,14 @@ def tagico(paths):
 # Falta solo Molino Dos Hermanos: no tiene web ni redes indexadas.
 # El alto es óptico, elegido a ojo para que todos pesen parecido en la fila.
 LOGOS = [
-    ("logo-ypf.png",       "lg-ypf",       "YPF",                              30),
-    ("logo-terminal6.png", "lg-t6",        "Terminal 6",                       44),
-    ("logo-odesur.png",    "lg-odesur",    "ODESUR",                           52),
-    ("logo-eis.png",       "lg-eis",       "UNL — Escuela Industrial Superior", 44),
-    ("logo-tecnoteca.png", "lg-tecnoteca", "Tecnoteca Rosario",                48),
-    ("logo-cimaes.png",    "lg-cimaes",    "CIMAES Marcelloni",                60),
-    ("logo-baravalle.png", "lg-baravalle", "Baravalle &amp; Granados",         32),
+    ("logo-ypf.png",          "lg-ypf",          "YPF",                               30),
+    ("logo-terminal6.png",    "lg-t6",           "Terminal 6",                        44),
+    ("logo-odesur.png",       "lg-odesur",       "ODESUR",                            52),
+    ("logo-dos-hermanos.png", "lg-dos-hermanos", "Molino Dos Hermanos",               44),
+    ("logo-eis.png",          "lg-eis",          "UNL — Escuela Industrial Superior", 44),
+    ("logo-tecnoteca.png",    "lg-tecnoteca",    "Tecnoteca Rosario",                 48),
+    ("logo-cimaes.png",       "lg-cimaes",       "CIMAES Marcelloni",                 60),
+    ("logo-baravalle.png",    "lg-baravalle",    "Baravalle &amp; Granados",          32),
 ]
 
 # Ancho de celda por breakpoint; el logo nunca puede pasar de celda - 16 px.
@@ -678,7 +680,7 @@ def build_body():
     # ── HERO
     a('<section class="hero"><div class="wrap">')
     a('<h1><span class="h1-a">La pantalla interactiva</span>'
-      '<em>N.º&nbsp;1 del mercado</em></h1>')
+      '<em>líder en Argentina</em></h1>')
 
     # ── VSL — va inmediatamente debajo del H1
     a('<div class="vsl"><div class="player" id="vsl" role="button" tabindex="0" '
@@ -710,7 +712,6 @@ def build_body():
                           '<div class="logo-celda" aria-hidden="true">')
     a('<div class="marquee"><div class="marquee-pista">%s%s</div></div>'
       % (tanda, copia * 3))
-    a('<div class="wrap"><p class="logos-mas">y en Molino Dos Hermanos</p></div>')
     a('</section>')
 
     # ── FILAS DE FUNCIONES

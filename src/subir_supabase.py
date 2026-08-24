@@ -54,6 +54,7 @@ ARCHIVOS = [
     (AQUI, "logo-tecnoteca.png"),
     (AQUI, "logo-cimaes.png"),
     (AQUI, "logo-baravalle.png"),
+    (AQUI, "logo-dos-hermanos.png"),
     (AQUI, "og-image.jpg"),
     (SCRATCH, "vsl-aimax.mp4"),
 ]
