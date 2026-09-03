@@ -439,14 +439,14 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 .real-cases-head p { margin-top: 10px; font-size: 16.5px; color: var(--ink-2); line-height: 1.55; }
 .real-grid {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px; margin-top: 34px;
+  align-items: start; gap: 20px; margin-top: 34px;
 }
 .real-card {
   position: relative; border-radius: 20px; overflow: hidden;
-  aspect-ratio: 3 / 4; background: #0b0b0f;
-  box-shadow: 0 24px 50px -30px rgba(0, 0, 0, 0.45);
+  background: #0b0b0f; box-shadow: 0 24px 50px -30px rgba(0, 0, 0, 0.45);
 }
-.real-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Sin object-fit ni aspect-ratio: la foto entra entera, sin recortar. */
+.real-card img { width: 100%; height: auto; display: block; }
 .real-veil {
   position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(11,11,15,0) 45%, rgba(11,11,15,0.82) 100%);
@@ -507,7 +507,6 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   .install-media { order: -1; position: static; }
   .real-cases { margin-top: 56px; }
   .real-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 24px; }
-  .real-card { aspect-ratio: 16 / 11; }
   .cta { padding: 80px 0; }
   .cta-actions .btn { width: 100%; }
 }
@@ -640,15 +639,15 @@ INSTALACIONES = [
 ]
 
 CASOS_REALES = [
-    ("caso-fapyd.webp", "FAPyD — Facultad de Arquitectura (UNR)",
+    ("caso-fapyd.webp", 900, 1200, "FAPyD — Facultad de Arquitectura (UNR)",
      "Corrección de proyectos en AutoCAD, en vivo y con los alumnos alrededor "
-     "de la pantalla.", "center 22%"),
-    ("caso-blackswan.webp", "Black Swan Inversiones",
+     "de la pantalla."),
+    ("caso-blackswan.webp", 1000, 667, "Black Swan Inversiones",
      "Recorrido de propiedades con el equipo, tocando y ampliando directo "
-     "sobre la pantalla.", "62% center"),
-    ("caso-municipalidad.webp", "Municipalidad de Rosario",
+     "sobre la pantalla."),
+    ("caso-municipalidad.webp", 900, 1200, "Municipalidad de Rosario",
      "Taller de dibujo accesible para personas mayores, en un dispositivo "
-     "táctil pensado para todos.", "center 32%"),
+     "táctil pensado para todos."),
 ]
 
 FILAS = [
@@ -818,12 +817,12 @@ def build_body():
     a('<p>Fotos reales, tomadas en el momento. No son renders ni fotos de banco.</p>')
     a('</div>')
     a('<div class="real-grid">')
-    for img, nombre, texto, pos in CASOS_REALES:
-        a('<div class="real-card"><img src="@@IMG:%s@@" loading="lazy" decoding="async" '
-          'style="object-position:%s" alt="Pantalla AIMAX en uso — %s">'
+    for img, w, h, nombre, texto in CASOS_REALES:
+        a('<div class="real-card"><img src="@@IMG:%s@@" width="%d" height="%d" '
+          'loading="lazy" decoding="async" alt="Pantalla AIMAX en uso — %s">'
           '<div class="real-veil"></div>'
           '<div class="real-label"><b>%s</b><span>%s</span></div></div>'
-          % (img, pos, nombre, nombre, texto))
+          % (img, w, h, nombre, nombre, texto))
     a('</div></div>')
     a('</div></section>')
 
