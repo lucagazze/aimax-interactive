@@ -46,7 +46,7 @@ ARCHIVOS = [
     (AQUI, "demo-escritura.jpg"),
     (AQUI, "demo-anotacion.jpg"),
     (AQUI, "demo-ia.jpg"),
-    (AQUI, "instalacion.jpg"),
+    (AQUI, "instalacion.webp"),
     (AQUI, "logo-ypf.png"),
     (AQUI, "logo-terminal6.png"),
     (AQUI, "logo-odesur.png"),

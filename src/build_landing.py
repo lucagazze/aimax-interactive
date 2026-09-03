@@ -61,7 +61,7 @@ IMAGENES = [
     "demo-escritura.jpg",
     "demo-anotacion.jpg",
     "demo-ia.jpg",
-    "instalacion.jpg",
+    "instalacion.webp",
     "logo-ypf.png",
     "logo-terminal6.png",
     "logo-odesur.png",
@@ -808,8 +808,8 @@ def build_body():
         a('<div class="install-item"><b>%s</b><span>%s</span></div>' % (nombre, rubro))
     a('</div>')
     a('</div>')
-    a('<div class="install-media"><img src="@@IMG:instalacion.jpg@@" '
-      'width="900" height="506" loading="lazy" decoding="async" '
+    a('<div class="install-media"><img src="@@IMG:instalacion.webp@@" '
+      'width="666" height="451" loading="lazy" decoding="async" '
       'alt="Pantalla interactiva AIMAX instalada en una sala de reuniones"></div>')
     a('</div>')
     a('<div class="real-cases"><div class="real-cases-head">')
