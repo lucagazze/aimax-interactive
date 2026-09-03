@@ -100,7 +100,7 @@ Los otros dos scripts se corren solo cuando cambian los assets:
 
 ## Los logos del carrusel
 
-Los siete salen de fuentes oficiales, ninguno recreado a mano:
+Diez de once salen de fuentes oficiales, ninguno recreado a mano:
 
 | Logo                             | Origen                                        |
 |----------------------------------|-----------------------------------------------|
@@ -111,10 +111,18 @@ Los siete salen de fuentes oficiales, ninguno recreado a mano:
 | Tecnoteca Rosario                | Facebook oficial                              |
 | CIMAES Marcelloni                | Facebook oficial                              |
 | Baravalle & Granados             | wordmark de `baravalle-granados.com.ar`       |
+| FAPyD (Facultad de Arquitectura, UNR) | foto de perfil de Facebook oficial (`facebook.com/fapyd`) |
+| Municipalidad de Rosario         | isologotipo oficial 2019, Wikimedia Commons   |
+| Black Swan Inversiones           | `bsinversiones.com`                           |
 
-Escuela Industrial y Baravalle solo publican su logo en blanco sobre fondo
-oscuro. Sobre fondo blanco van en negro, que es la variante oscura del mismo
-wordmark.
+Escuela Industrial, Baravalle y FAPyD solo publican su logo en blanco sobre
+fondo oscuro. Sobre fondo blanco van en negro, que es la variante oscura del
+mismo wordmark.
+
+FAPyD, Black Swan Inversiones y Municipalidad de Rosario tienen además una
+foto real de la pantalla en uso (`caso-fapyd.webp`, `caso-blackswan.webp`,
+`caso-municipalidad.webp`) en la sección "Así se usa en cada lugar", debajo
+de la lista de instalaciones.
 
 ## Pendiente
 
@@ -123,8 +131,8 @@ wordmark.
       cliente. Por ahora aparece como texto abajo del carrusel.
 - [ ] **VSL definitiva.** Hoy corre el video del sitio actual de AIMAX,
       comprimido de 83 MB a 5,6 MB.
-- [ ] **Testimonios.** El bloque está maquetado y marcado como placeholder;
-      falta el texto real.
+- [x] **Testimonios.** Se sacó el bloque placeholder (2026-09-03, a pedido de
+      Alejo); se puede volver a agregar más adelante con texto real.
 
 ## Verificación antes de publicar
 

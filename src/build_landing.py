@@ -70,6 +70,12 @@ IMAGENES = [
     "logo-cimaes.png",
     "logo-baravalle.png",
     "logo-dos-hermanos.png",
+    "logo-fapyd.png",
+    "logo-municipalidad.png",
+    "logo-blackswan.png",
+    "caso-fapyd.webp",
+    "caso-municipalidad.webp",
+    "caso-blackswan.webp",
     "og-image.jpg",
 ]
 
@@ -426,12 +432,30 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 .install-item b { font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; }
 .install-item span { font-size: 14.5px; color: var(--ink-3); margin-left: auto; }
 
-.quote {
-  margin-top: 32px; padding: 26px 28px; border-radius: 18px;
-  background: var(--tint); border: 1px dashed #c9beff;
+/* ── Galería de casos reales ────────────────────────────────────────────── */
+.real-cases { margin-top: 96px; }
+.real-cases-head { max-width: 62ch; }
+.real-cases-head h3 { font-size: clamp(22px, 2.2vw, 27px); font-weight: 800; }
+.real-cases-head p { margin-top: 10px; font-size: 16.5px; color: var(--ink-2); line-height: 1.55; }
+.real-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px; margin-top: 34px;
 }
-.quote p { font-size: 17px; color: var(--violet-ink); font-weight: 500; line-height: 1.55; }
-.quote small { display: block; margin-top: 10px; font-size: 13px; color: #7b6bd6; font-weight: 600; }
+.real-card {
+  position: relative; border-radius: 20px; overflow: hidden;
+  aspect-ratio: 3 / 4; background: #0b0b0f;
+  box-shadow: 0 24px 50px -30px rgba(0, 0, 0, 0.45);
+}
+.real-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.real-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,11,15,0) 45%, rgba(11,11,15,0.82) 100%);
+}
+.real-label {
+  position: absolute; left: 18px; right: 18px; bottom: 16px; color: #fff;
+}
+.real-label b { display: block; font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; }
+.real-label span { display: block; margin-top: 4px; font-size: 13.5px; color: rgba(255,255,255,0.82); line-height: 1.4; }
 
 /* ── CTA final ──────────────────────────────────────────────────────────── */
 .cta { background: var(--violet); color: #fff; padding: 108px 0; text-align: center; }
@@ -481,6 +505,9 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   .case { padding: 28px 24px; }
   .install { grid-template-columns: minmax(0, 1fr); gap: 34px; }
   .install-media { order: -1; position: static; }
+  .real-cases { margin-top: 56px; }
+  .real-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 24px; }
+  .real-card { aspect-ratio: 16 / 11; }
   .cta { padding: 80px 0; }
   .cta-actions .btn { width: 100%; }
 }
@@ -555,6 +582,9 @@ LOGOS = [
     ("logo-tecnoteca.png",    "lg-tecnoteca",    "Tecnoteca Rosario",                 48),
     ("logo-cimaes.png",       "lg-cimaes",       "CIMAES Marcelloni",                 60),
     ("logo-baravalle.png",    "lg-baravalle",    "Baravalle &amp; Granados",          32),
+    ("logo-fapyd.png",        "lg-fapyd",        "FAPyD — Facultad de Arquitectura, Planeamiento y Diseño (UNR)", 40),
+    ("logo-municipalidad.png","lg-municipalidad","Municipalidad de Rosario",          48),
+    ("logo-blackswan.png",    "lg-blackswan",    "Black Swan Inversiones",            34),
 ]
 
 # Ancho de celda por breakpoint; el logo nunca puede pasar de celda - 16 px.
@@ -604,6 +634,21 @@ INSTALACIONES = [
     ("Tecnoteca Rosario", "Educación"),
     ("CIMAES", "Salud"),
     ("Baravalle &amp; Granados", "Estudio jurídico"),
+    ("FAPyD — Facultad de Arquitectura (UNR)", "Educación"),
+    ("Black Swan Inversiones", "Finanzas"),
+    ("Municipalidad de Rosario", "Gobierno"),
+]
+
+CASOS_REALES = [
+    ("caso-fapyd.webp", "FAPyD — Facultad de Arquitectura (UNR)",
+     "Corrección de proyectos en AutoCAD, en vivo y con los alumnos alrededor "
+     "de la pantalla.", "center 22%"),
+    ("caso-blackswan.webp", "Black Swan Inversiones",
+     "Recorrido de propiedades con el equipo, tocando y ampliando directo "
+     "sobre la pantalla.", "62% center"),
+    ("caso-municipalidad.webp", "Municipalidad de Rosario",
+     "Taller de dibujo accesible para personas mayores, en un dispositivo "
+     "táctil pensado para todos.", "center 32%"),
 ]
 
 FILAS = [
@@ -763,14 +808,24 @@ def build_body():
     for nombre, rubro in INSTALACIONES:
         a('<div class="install-item"><b>%s</b><span>%s</span></div>' % (nombre, rubro))
     a('</div>')
-    a('<div class="quote"><p>&ldquo;[TESTIMONIO — pegar acá el texto real del cliente. '
-      'Alejo tiene dos testimonios escritos.]&rdquo;</p>'
-      '<small>[NOMBRE Y CARGO — PENDIENTE]</small></div>')
     a('</div>')
     a('<div class="install-media"><img src="@@IMG:instalacion.jpg@@" '
       'width="900" height="506" loading="lazy" decoding="async" '
       'alt="Pantalla interactiva AIMAX instalada en una sala de reuniones"></div>')
-    a('</div></div></section>')
+    a('</div>')
+    a('<div class="real-cases"><div class="real-cases-head">')
+    a('<h3>Así se usa en cada lugar</h3>')
+    a('<p>Fotos reales, tomadas en el momento. No son renders ni fotos de banco.</p>')
+    a('</div>')
+    a('<div class="real-grid">')
+    for img, nombre, texto, pos in CASOS_REALES:
+        a('<div class="real-card"><img src="@@IMG:%s@@" loading="lazy" decoding="async" '
+          'style="object-position:%s" alt="Pantalla AIMAX en uso — %s">'
+          '<div class="real-veil"></div>'
+          '<div class="real-label"><b>%s</b><span>%s</span></div></div>'
+          % (img, pos, nombre, nombre, texto))
+    a('</div></div>')
+    a('</div></section>')
 
     # ── CTA FINAL
     a('<section class="cta"><div class="wrap">')
@@ -852,10 +907,12 @@ canvas = {
     "annotations": [
         {"id": "pendientes", "x": 0, "y": -190, "w": 620,
          "text": "PENDIENTE ANTES DE PUBLICAR\n"
-                 "1. WhatsApp real de AIMAX (el del sitio actual es de Australia, +61).\n"
-                 "2. El video de la VSL (hoy se ve el poster: frame real del producto).\n"
-                 "3. Texto de los 2 testimonios escritos que tiene Alejo.\n"
-                 "4. Confirmar que envían e instalan a todo el país."},
+                 "1. El video de la VSL (hoy se ve el poster: frame real del producto).\n"
+                 "2. Confirmar que envían e instalan a todo el país.\n"
+                 "\n"
+                 "Resuelto 2026-09-03: se sacó el testimonio placeholder (Alejo dijo "
+                 "que se puede eliminar por ahora) y se sumaron FAPyD, Black Swan "
+                 "Inversiones y Municipalidad de Rosario, con logo y foto real cada uno."},
         {"id": "h1-claim", "x": 660, "y": -190, "w": 460,
          "text": "El H1 dice \"N.º 1 del mercado\". Es un superlativo sin fuente "
                  "verificable: Meta lo puede observar y un comprador B2B lo puede "

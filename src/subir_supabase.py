@@ -55,6 +55,12 @@ ARCHIVOS = [
     (AQUI, "logo-cimaes.png"),
     (AQUI, "logo-baravalle.png"),
     (AQUI, "logo-dos-hermanos.png"),
+    (AQUI, "logo-fapyd.png"),
+    (AQUI, "logo-municipalidad.png"),
+    (AQUI, "logo-blackswan.png"),
+    (AQUI, "caso-fapyd.webp"),
+    (AQUI, "caso-municipalidad.webp"),
+    (AQUI, "caso-blackswan.webp"),
     (AQUI, "og-image.jpg"),
     (SCRATCH, "vsl-aimax.mp4"),
 ]
