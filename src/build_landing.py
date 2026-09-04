@@ -423,6 +423,9 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   position: sticky; top: 88px;
   box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.4);
 }
+/* Sin esto, el atributo HTML height="..." queda fijo y no escala con el
+   ancho (misma trampa que .row-media img). */
+.install-media img { width: 100%; height: auto; }
 .install-list { display: flex; flex-direction: column; gap: 2px; margin-top: 28px; }
 .install-item {
   display: flex; align-items: baseline; gap: 14px;
@@ -792,8 +795,9 @@ def build_body():
     a('</div>')
     a('</div>')
     a('<div class="install-media"><img src="@@IMG:instalacion.webp@@" '
-      'width="666" height="451" loading="lazy" decoding="async" '
-      'alt="Pantalla interactiva AIMAX instalada en una sala de reuniones"></div>')
+      'width="1024" height="1536" loading="lazy" decoding="async" '
+      'alt="Pantalla interactiva AIMAX: Android 14 + Windows 11, 4K UHD, '
+      'videoconferencia integrada, duplicación inalámbrica e interacción multitáctil"></div>')
     a('</div>')
     a('<div class="real-cases"><div class="real-cases-head">')
     a('<h3>Tres formas de usarla todos los días</h3>')

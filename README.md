@@ -152,6 +152,17 @@ lado. Afectaba a las 3 filas desde siempre, no solo a las nuevas — se notó
 recién con los gráficos de IA porque tienen texto pegado a mitad de la
 imagen. Se arregla agregando `height: auto;` explícito en la regla CSS.
 
+Misma trampa, otra víctima: `.install-media img` no tenía NINGUNA regla
+propia (solo el `max-width:100%` global), así que al cambiar
+`instalacion.webp` por una imagen mucho más vertical (1024×1536, la
+referencia "Una pantalla. Múltiples formas de trabajar." que mandó Alejo)
+el `height="1536"` del atributo quedó fijo mientras el ancho se achicaba al
+de la columna — la imagen se veía estirada 3 veces más alta de lo real.
+Mismo arreglo: `.install-media img { width:100%; height:auto; }` explícito.
+Ojo con esto en cualquier imagen nueva que se agregue con `width`/`height`
+en el `<img>` y algo (aspect-ratio o no) controlando el tamaño por CSS: si
+`height` no queda explícitamente en `auto`, el atributo gana.
+
 ## Pendiente
 
 - [ ] **Logo de Molino Dos Hermanos.** No tiene dominio, ni Instagram, ni
