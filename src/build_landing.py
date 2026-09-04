@@ -376,9 +376,10 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   border: 1px solid var(--line);
   box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.4);
 }
-/* height:auto es necesario: si no, el atributo HTML height="427" le gana
-   al aspect-ratio y la imagen queda recortada mucho más angosta que 16:9. */
-.row-media img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+/* Sin aspect-ratio ni object-fit: cada imagen entra entera, con su propia
+   proporción. height:auto es necesario porque si no el atributo HTML
+   height="..." queda fijo y no escala con el ancho. */
+.row-media img { width: 100%; height: auto; display: block; }
 .row h3 { font-size: clamp(25px, 2.4vw, 33px); font-weight: 800; }
 .row p { margin-top: 16px; font-size: 18px; color: var(--ink-2); line-height: 1.56; }
 .row-tag {
@@ -643,7 +644,7 @@ FILAS = [
         texto="Resolvés una fórmula con el marcador y la pantalla la reconoce, la "
               "digitaliza y la deja lista para compartir. Sin escanear, sin pasarla "
               "en limpio después, sin que se pierda al borrar.",
-        img="demo-escritura.jpg",
+        img="demo-escritura.jpg", w=760, h=427,
         alt="Docente resolviendo una derivada a mano sobre una pantalla AIMAX",
         flip=False,
     ),
@@ -653,7 +654,7 @@ FILAS = [
         texto="Un gráfico, una planilla, cualquier cosa que tengas abierta. Escribís "
               "arriba sin salir de la aplicación y todo queda guardado en el mismo "
               "archivo. La reunión termina y el material ya está listo para enviar.",
-        img="fila-anotacion.webp",
+        img="fila-anotacion.webp", w=2752, h=1536,
         alt="Pantalla AIMAX con una anotación a mano sobre un gráfico de barras",
         flip=True,
     ),
@@ -664,7 +665,7 @@ FILAS = [
               "pantalla chica. Con AIMAX es una sola pantalla lista para la videollamada, "
               "la presentación y el gráfico al mismo tiempo. Reuniones que arrancan y "
               "terminan más rápido.",
-        img="fila-android-windows.webp",
+        img="fila-android-windows.webp", w=1600, h=760,
         alt="Comparación entre una sala tradicional, con proyector y cables, y una sala con AIMAX",
         flip=False,
     ),
@@ -760,7 +761,8 @@ def build_body():
           % (tagico('<path d="M20 6 9 17l-5-5"/>'), f['tag']))
         a('<h3>%s</h3><p>%s</p>' % (f['titulo'], f['texto']))
         a('</div>')
-        a('<div class="row-media"><img src="@@IMG:%s@@" width="760" height="427" loading="lazy" decoding="async" alt="%s"></div>' % (f['img'], f['alt']))
+        a('<div class="row-media"><img src="@@IMG:%s@@" width="%d" height="%d" loading="lazy" decoding="async" alt="%s"></div>'
+          % (f['img'], f['w'], f['h'], f['alt']))
         a('</div>')
     a('</div></div></section>')
 

@@ -264,9 +264,10 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   border: 1px solid var(--line);
   box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.4);
 }
-/* height:auto es necesario: si no, el atributo HTML height="427" le gana
-   al aspect-ratio y la imagen queda recortada mucho más angosta que 16:9. */
-.row-media img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+/* Sin aspect-ratio ni object-fit: cada imagen entra entera, con su propia
+   proporción. height:auto es necesario porque si no el atributo HTML
+   height="..." queda fijo y no escala con el ancho. */
+.row-media img { width: 100%; height: auto; display: block; }
 .row h3 { font-size: clamp(25px, 2.4vw, 33px); font-weight: 800; }
 .row p { margin-top: 16px; font-size: 18px; color: var(--ink-2); line-height: 1.56; }
 .row-tag {
@@ -483,14 +484,14 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 <div class="row-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Anotación en vivo</div>
 <h3>Anotá encima<br>de lo que estés mostrando.</h3><p>Un gráfico, una planilla, cualquier cosa que tengas abierta. Escribís arriba sin salir de la aplicación y todo queda guardado en el mismo archivo. La reunión termina y el material ya está listo para enviar.</p>
 </div>
-<div class="row-media"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/fila-anotacion.webp" width="760" height="427" loading="lazy" decoding="async" alt="Pantalla AIMAX con una anotación a mano sobre un gráfico de barras"></div>
+<div class="row-media"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/fila-anotacion.webp" width="2752" height="1536" loading="lazy" decoding="async" alt="Pantalla AIMAX con una anotación a mano sobre un gráfico de barras"></div>
 </div>
 <div class="row">
 <div class="row-copy">
 <div class="row-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Antes y después</div>
 <h3>Dos formas de<br>hacer una reunión.</h3><p>Cables enredados, un proyector que tarda en prender y todos mirando una pantalla chica. Con AIMAX es una sola pantalla lista para la videollamada, la presentación y el gráfico al mismo tiempo. Reuniones que arrancan y terminan más rápido.</p>
 </div>
-<div class="row-media"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/fila-android-windows.webp" width="760" height="427" loading="lazy" decoding="async" alt="Comparación entre una sala tradicional, con proyector y cables, y una sala con AIMAX"></div>
+<div class="row-media"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/fila-android-windows.webp" width="1600" height="760" loading="lazy" decoding="async" alt="Comparación entre una sala tradicional, con proyector y cables, y una sala con AIMAX"></div>
 </div>
 </div></div></section>
 <section class="section tinted"><div class="wrap">

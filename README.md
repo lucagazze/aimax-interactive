@@ -124,19 +124,25 @@ y Proglobal, confirmados por Alejo el 2026-09-03.
 ## Galería "Tres formas de usarla todos los días" y filas de funciones
 
 Las 3 imágenes de la galería (`caso-educacion.webp`, `caso-empresas.webp`,
-`caso-arquitectura.webp`) y 2 de las 3 filas de "Qué hace la pantalla"
-(`fila-anotacion.webp`, `fila-android-windows.webp`) son gráficos generados
-con IA (nano-banana pro, con `instalacion.webp` como referencia de producto
-para mantener el diseño real del equipo), no fotos de instalaciones ni de
-clientes puntuales. La primera fila (`demo-escritura.jpg`) sigue siendo una
-captura real del producto.
+`caso-arquitectura.webp`) y `fila-anotacion.webp` (fila "Anotación en
+vivo") son gráficos generados con IA (nano-banana pro, con
+`instalacion.webp` como referencia de producto para mantener el diseño
+real del equipo), no fotos de instalaciones ni de clientes puntuales.
+`fila-android-windows.webp` (fila "Antes y después") es en cambio la
+imagen real que mandó Alejo ("Dos formas de hacer una reunión."), recortada
+para sacarle el título que traía arriba porque duplicaba el `<h3>` de la
+fila. La primera fila (`demo-escritura.jpg`) sigue siendo una captura real
+del producto.
 
 Hasta el 2026-09-03 la galería mostraba 3 fotos reales atribuidas a FAPyD,
 Black Swan Inversiones y Municipalidad de Rosario — Alejo avisó que esas
 fotos no correspondían a esos casos de uso, así que se sacó la atribución.
 Alejo pidió después reemplazarlas por gráficos de producto con los
-beneficios integrados (mandó 3 referencias) y usar el mismo estilo en las
-filas de "Anotación en vivo" y "Android + Windows".
+beneficios integrados (mandó 3 referencias) y usar el mismo estilo en la
+fila de "Anotación en vivo"; para la fila "Android + Windows" mandó
+directamente la imagen final, que ahora se llama "Antes y después" (tag y
+texto reescritos para que hablen de la comparación de salas, no de
+Android/Windows — ese copy quedó desactualizado un par de commits).
 
 Los 7 textos de la galería (`Todo en uno`, `Interacción real`, `Colaboración
 sin límites`, `Conectividad total`, `Mejora la atención`, `Ahorro de tiempo
@@ -150,7 +156,12 @@ en vez de calcularlo desde el ancho, así que el recorte real terminaba siendo
 ~1.18:1 en vez de 16:9 y se comía el 30%+ del ancho de la imagen por cada
 lado. Afectaba a las 3 filas desde siempre, no solo a las nuevas — se notó
 recién con los gráficos de IA porque tienen texto pegado a mitad de la
-imagen. Se arregla agregando `height: auto;` explícito en la regla CSS.
+imagen. Primero se arregló agregando `height: auto;` explícito. Después,
+al recortarle el título a `fila-android-windows.webp`, esa imagen quedó
+mucho más ancha que 16:9 (2.1:1) — forzarla a 16:9 le recortaba los costados
+a las dos cards. Se sacó `aspect-ratio`/`object-fit` de `.row-media img` del
+todo: ahora cada fila entra con su proporción real (`w`/`h` por fila en
+`FILAS`, ya no `width="760" height="427"` fijo para las tres).
 
 Misma trampa, otra víctima: `.install-media img` no tenía NINGUNA regla
 propia (solo el `max-width:100%` global), así que al cambiar
