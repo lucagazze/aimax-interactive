@@ -59,8 +59,8 @@ VSL_SUBIDO = "2026-08-22"
 IMAGENES = [
     "vsl-poster.jpg",
     "demo-escritura.jpg",
-    "demo-anotacion.jpg",
-    "demo-ia.jpg",
+    "fila-anotacion.webp",
+    "fila-android-windows.webp",
     "instalacion.webp",
     "logo-ypf.png",
     "logo-terminal6.png",
@@ -376,7 +376,9 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   border: 1px solid var(--line);
   box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.4);
 }
-.row-media img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+/* height:auto es necesario: si no, el atributo HTML height="427" le gana
+   al aspect-ratio y la imagen queda recortada mucho más angosta que 16:9. */
+.row-media img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .row h3 { font-size: clamp(25px, 2.4vw, 33px); font-weight: 800; }
 .row p { margin-top: 16px; font-size: 18px; color: var(--ink-2); line-height: 1.56; }
 .row-tag {
@@ -648,8 +650,8 @@ FILAS = [
         texto="Un gráfico, un plano, una web abierta. Escribís arriba sin salir de la "
               "aplicación y todo queda guardado en el mismo archivo. La reunión "
               "termina y el material ya está listo para enviar.",
-        img="demo-anotacion.jpg",
-        alt="Pantalla AIMAX con anotaciones a mano sobre un gráfico durante una clase",
+        img="fila-anotacion.webp",
+        alt="Pantalla AIMAX con una anotación a mano sobre un gráfico de barras",
         flip=True,
     ),
     dict(
@@ -658,8 +660,8 @@ FILAS = [
         texto="Android 14 para arrancar en segundos y usar la pizarra, la cámara o el "
               "navegador. Un módulo Windows 10 con Core i7 y 1 TB para trabajar como en "
               "tu PC. Se cambia de uno a otro sin desenchufar nada.",
-        img="demo-ia.jpg",
-        alt="Pantalla AIMAX ejecutando un navegador con ChatGPT en modo Windows",
+        img="fila-android-windows.webp",
+        alt="Comparación entre una sala con equipos separados y una sala con AIMAX, Android y Windows en una sola pantalla",
         flip=False,
     ),
 ]

@@ -121,17 +121,36 @@ además 5 nombres sin logo ni foto, solo texto — igual que Molino Dos
 Hermanos —: Santa Fe Bio, Franco Pisso, Buena Vista Desarrollos, Deal Buró
 y Proglobal, confirmados por Alejo el 2026-09-03.
 
-## Galería "Tres formas de usarla todos los días"
+## Galería "Tres formas de usarla todos los días" y filas de funciones
 
-Las 3 imágenes (`caso-educacion.webp`, `caso-empresas.webp`,
-`caso-arquitectura.webp`) son gráficos generados con IA (nano-banana pro,
-con `instalacion.webp` como referencia de producto para mantener el diseño
-real del equipo), no fotos de instalaciones ni de clientes puntuales.
-Hasta el 2026-09-03 esa sección mostraba 3 fotos reales atribuidas a FAPyD,
+Las 3 imágenes de la galería (`caso-educacion.webp`, `caso-empresas.webp`,
+`caso-arquitectura.webp`) y 2 de las 3 filas de "Qué hace la pantalla"
+(`fila-anotacion.webp`, `fila-android-windows.webp`) son gráficos generados
+con IA (nano-banana pro, con `instalacion.webp` como referencia de producto
+para mantener el diseño real del equipo), no fotos de instalaciones ni de
+clientes puntuales. La primera fila (`demo-escritura.jpg`) sigue siendo una
+captura real del producto.
+
+Hasta el 2026-09-03 la galería mostraba 3 fotos reales atribuidas a FAPyD,
 Black Swan Inversiones y Municipalidad de Rosario — Alejo avisó que esas
-fotos no correspondían a esos casos de uso, así que se sacó la atribución
-y se reemplazaron por estos gráficos genéricos, sin nombre de cliente,
-hasta tener material real y verificado.
+fotos no correspondían a esos casos de uso, así que se sacó la atribución.
+Alejo pidió después reemplazarlas por gráficos de producto con los
+beneficios integrados (mandó 3 referencias) y usar el mismo estilo en las
+filas de "Anotación en vivo" y "Android + Windows".
+
+Los 7 textos de la galería (`Todo en uno`, `Interacción real`, `Colaboración
+sin límites`, `Conectividad total`, `Mejora la atención`, `Ahorro de tiempo
+y recursos`, `Preparada para el futuro`) son la lista de "Ventajas de una
+pantalla interactiva" que mandó Alejo, repartida 3/2/2 entre las 3 imágenes.
+
+**Trampa de CSS resuelta el 2026-09-03:** `.row-media img` tenía
+`aspect-ratio: 16/9` pero el atributo HTML `height="427"` (fijo para las 3
+filas) le ganaba a la aspect-ratio — el navegador usaba 427px de alto literal
+en vez de calcularlo desde el ancho, así que el recorte real terminaba siendo
+~1.18:1 en vez de 16:9 y se comía el 30%+ del ancho de la imagen por cada
+lado. Afectaba a las 3 filas desde siempre, no solo a las nuevas — se notó
+recién con los gráficos de IA porque tienen texto pegado a mitad de la
+imagen. Se arregla agregando `height: auto;` explícito en la regla CSS.
 
 ## Pendiente
 

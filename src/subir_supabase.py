@@ -44,8 +44,8 @@ SCRATCH = (r"C:\Users\lucag\AppData\Local\Temp\claude\c--Users-lucag--claude"
 ARCHIVOS = [
     (AQUI, "vsl-poster.jpg"),
     (AQUI, "demo-escritura.jpg"),
-    (AQUI, "demo-anotacion.jpg"),
-    (AQUI, "demo-ia.jpg"),
+    (AQUI, "fila-anotacion.webp"),
+    (AQUI, "fila-android-windows.webp"),
     (AQUI, "instalacion.webp"),
     (AQUI, "logo-ypf.png"),
     (AQUI, "logo-terminal6.png"),
