@@ -58,6 +58,13 @@ ARCHIVOS = [
     (AQUI, "caso-educacion.webp"),
     (AQUI, "caso-empresas.webp"),
     (AQUI, "caso-arquitectura.webp"),
+    (AQUI, "carrusel-1.webp"),
+    (AQUI, "carrusel-2.webp"),
+    (AQUI, "carrusel-3.webp"),
+    (AQUI, "carrusel-4.webp"),
+    (AQUI, "carrusel-5.webp"),
+    (AQUI, "carrusel-6.webp"),
+    (AQUI, "carrusel-7.webp"),
     (AQUI, "og-image.jpg"),
     (SCRATCH, "vsl-aimax.mp4"),
 ]

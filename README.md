@@ -121,6 +121,20 @@ además 5 nombres sin logo ni foto, solo texto — igual que Molino Dos
 Hermanos —: Santa Fe Bio, Franco Pisso, Buena Vista Desarrollos, Deal Buró
 y Proglobal, confirmados por Alejo el 2026-09-03.
 
+## Carrusel "Así se ve en el día a día"
+
+Sección nueva (2026-09-03), debajo de la galería de casos, antes del CTA
+final. Son las 7 fotos reales que mandó Luca por WhatsApp (arquitectura con
+AutoCAD, un stand de Urbania, un taller accesible para personas mayores),
+en carrusel continuo (mismo mecanismo CSS que el marquee de logos: la tanda
+se repite 2 veces y se anima `translateX(-50%)` infinito). Sin texto ni
+nombre de cliente encima — a diferencia de la galería de arriba, acá no se
+sabe ni hace falta saber de qué instalación es cada foto, son solo "gente
+usándola". Alto fijo (`.uso-card`, 340px desktop / 220px mobile) y ancho
+automático por imagen (`carrusel-1.webp` a `carrusel-7.webp`): cada foto
+entra completa, sin recortar ni deformar, igual que el resto de las
+imágenes del sitio desde el 2026-09-03.
+
 ## Galería "Tres formas de usarla todos los días" y filas de funciones
 
 Las 3 imágenes de la galería (`caso-educacion.webp`, `caso-empresas.webp`,

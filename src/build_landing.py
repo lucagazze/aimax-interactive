@@ -73,6 +73,13 @@ IMAGENES = [
     "caso-educacion.webp",
     "caso-empresas.webp",
     "caso-arquitectura.webp",
+    "carrusel-1.webp",
+    "carrusel-2.webp",
+    "carrusel-3.webp",
+    "carrusel-4.webp",
+    "carrusel-5.webp",
+    "carrusel-6.webp",
+    "carrusel-7.webp",
     "og-image.jpg",
 ]
 
@@ -451,6 +458,26 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 /* Sin object-fit ni aspect-ratio: la imagen entra entera, sin recortar. */
 .real-card img { width: 100%; height: auto; display: block; }
 
+/* ── Carrusel de fotos reales (gente usando la pantalla) ────────────────── */
+.uso-real { padding: 116px 0; }
+.uso-marquee {
+  overflow: hidden; margin-top: 40px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.uso-pista {
+  display: flex; gap: 16px; width: max-content;
+  animation: desfile 75s linear infinite;
+  will-change: transform; pointer-events: none;
+}
+.uso-card {
+  flex: 0 0 auto; height: 340px; border-radius: 18px; overflow: hidden;
+  box-shadow: 0 20px 40px -26px rgba(0, 0, 0, 0.4);
+}
+/* Alto fijo, ancho automático: cada foto entra entera, con su proporción
+   real, sin recortar ni deformar. */
+.uso-card img { height: 100%; width: auto; display: block; }
+
 /* ── CTA final ──────────────────────────────────────────────────────────── */
 .cta { background: var(--violet); color: #fff; padding: 108px 0; text-align: center; }
 .cta h2 { color: #fff; margin: 0 auto; max-width: 18ch; }
@@ -501,6 +528,10 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   .install-media { order: -1; position: static; }
   .real-cases { margin-top: 56px; }
   .real-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 24px; }
+  .uso-real { padding: 76px 0; }
+  .uso-marquee { margin-top: 28px; }
+  .uso-pista { gap: 12px; animation-duration: 46s; }
+  .uso-card { height: 220px; border-radius: 14px; }
   .cta { padding: 80px 0; }
   .cta-actions .btn { width: 100%; }
 }
@@ -635,6 +666,18 @@ CASOS_REALES = [
     ("caso-educacion.webp", 1856, 2304),
     ("caso-empresas.webp", 1856, 2304),
     ("caso-arquitectura.webp", 1856, 2304),
+]
+
+# Fotos reales de gente usando la pantalla, sin nombre de cliente ni texto
+# encima — solo casos de uso, en carrusel continuo.
+CARRUSEL_USO = [
+    ("carrusel-1.webp", 1280, 854),
+    ("carrusel-2.webp", 675, 900),
+    ("carrusel-3.webp", 675, 900),
+    ("carrusel-4.webp", 675, 900),
+    ("carrusel-5.webp", 675, 900),
+    ("carrusel-6.webp", 506, 900),
+    ("carrusel-7.webp", 675, 900),
 ]
 
 FILAS = [
@@ -813,6 +856,22 @@ def build_body():
           'loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div>'
           % (img, w, h))
     a('</div></div>')
+    a('</div></section>')
+
+    # ── CARRUSEL DE FOTOS REALES (gente usando la pantalla, sin texto)
+    a('<section class="uso-real"><div class="wrap">')
+    a('<div class="center"><p class="eyebrow">En uso</p>')
+    a('<h2 class="una-linea">Así se ve en el día a día</h2></div>')
+    tanda_uso = ''.join(
+        '<div class="uso-card"><img src="@@IMG:%s@@" width="%d" height="%d" '
+        'loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div>'
+        % (img, w, h) for img, w, h in CARRUSEL_USO)
+    copia_uso = ''.join(
+        '<div class="uso-card" aria-hidden="true"><img src="@@IMG:%s@@" width="%d" '
+        'height="%d" loading="lazy" decoding="async" alt=""></div>'
+        % (img, w, h) for img, w, h in CARRUSEL_USO)
+    a('<div class="uso-marquee"><div class="uso-pista">%s%s</div></div>'
+      % (tanda_uso, copia_uso))
     a('</div></section>')
 
     # ── CTA FINAL

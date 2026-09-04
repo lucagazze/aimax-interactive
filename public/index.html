@@ -339,6 +339,26 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 /* Sin object-fit ni aspect-ratio: la imagen entra entera, sin recortar. */
 .real-card img { width: 100%; height: auto; display: block; }
 
+/* ── Carrusel de fotos reales (gente usando la pantalla) ────────────────── */
+.uso-real { padding: 116px 0; }
+.uso-marquee {
+  overflow: hidden; margin-top: 40px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.uso-pista {
+  display: flex; gap: 16px; width: max-content;
+  animation: desfile 75s linear infinite;
+  will-change: transform; pointer-events: none;
+}
+.uso-card {
+  flex: 0 0 auto; height: 340px; border-radius: 18px; overflow: hidden;
+  box-shadow: 0 20px 40px -26px rgba(0, 0, 0, 0.4);
+}
+/* Alto fijo, ancho automático: cada foto entra entera, con su proporción
+   real, sin recortar ni deformar. */
+.uso-card img { height: 100%; width: auto; display: block; }
+
 /* ── CTA final ──────────────────────────────────────────────────────────── */
 .cta { background: var(--violet); color: #fff; padding: 108px 0; text-align: center; }
 .cta h2 { color: #fff; margin: 0 auto; max-width: 18ch; }
@@ -389,6 +409,10 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   .install-media { order: -1; position: static; }
   .real-cases { margin-top: 56px; }
   .real-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 24px; }
+  .uso-real { padding: 76px 0; }
+  .uso-marquee { margin-top: 28px; }
+  .uso-pista { gap: 12px; animation-duration: 46s; }
+  .uso-card { height: 220px; border-radius: 14px; }
   .cta { padding: 80px 0; }
   .cta-actions .btn { width: 100%; }
 }
@@ -543,6 +567,11 @@ h2.una-linea { max-width: none; white-space: nowrap; }
 <div class="real-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/caso-empresas.webp" width="1856" height="2304" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div>
 <div class="real-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/caso-arquitectura.webp" width="1856" height="2304" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div>
 </div></div>
+</div></section>
+<section class="uso-real"><div class="wrap">
+<div class="center"><p class="eyebrow">En uso</p>
+<h2 class="una-linea">Así se ve en el día a día</h2></div>
+<div class="uso-marquee"><div class="uso-pista"><div class="uso-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-1.webp" width="1280" height="854" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div><div class="uso-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-2.webp" width="675" height="900" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div><div class="uso-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-3.webp" width="675" height="900" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div><div class="uso-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-4.webp" width="675" height="900" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div><div class="uso-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-5.webp" width="675" height="900" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div><div class="uso-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-6.webp" width="506" height="900" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div><div class="uso-card"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-7.webp" width="675" height="900" loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div><div class="uso-card" aria-hidden="true"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-1.webp" width="1280" height="854" loading="lazy" decoding="async" alt=""></div><div class="uso-card" aria-hidden="true"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-2.webp" width="675" height="900" loading="lazy" decoding="async" alt=""></div><div class="uso-card" aria-hidden="true"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-3.webp" width="675" height="900" loading="lazy" decoding="async" alt=""></div><div class="uso-card" aria-hidden="true"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-4.webp" width="675" height="900" loading="lazy" decoding="async" alt=""></div><div class="uso-card" aria-hidden="true"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-5.webp" width="675" height="900" loading="lazy" decoding="async" alt=""></div><div class="uso-card" aria-hidden="true"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-6.webp" width="506" height="900" loading="lazy" decoding="async" alt=""></div><div class="uso-card" aria-hidden="true"><img src="https://czocbnyoenjbpxmcqobn.supabase.co/storage/v1/object/public/algoritmia-img/aimax/carrusel-7.webp" width="675" height="900" loading="lazy" decoding="async" alt=""></div></div></div>
 </div></section>
 <section class="cta"><div class="wrap">
 <h2>¿Sirve para tu aula o tu sala de reuniones?</h2>
