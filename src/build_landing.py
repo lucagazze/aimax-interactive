@@ -650,19 +650,20 @@ FILAS = [
     dict(
         tag="Anotación en vivo",
         titulo="Anotá encima<br>de lo que estés mostrando.",
-        texto="Un gráfico, un plano, una web abierta. Escribís arriba sin salir de la "
-              "aplicación y todo queda guardado en el mismo archivo. La reunión "
-              "termina y el material ya está listo para enviar.",
+        texto="Un gráfico, una planilla, cualquier cosa que tengas abierta. Escribís "
+              "arriba sin salir de la aplicación y todo queda guardado en el mismo "
+              "archivo. La reunión termina y el material ya está listo para enviar.",
         img="fila-anotacion.webp",
         alt="Pantalla AIMAX con una anotación a mano sobre un gráfico de barras",
         flip=True,
     ),
     dict(
-        tag="Android + Windows",
+        tag="Antes y después",
         titulo="Dos formas de<br>hacer una reunión.",
-        texto="Android 14 para arrancar en segundos y usar la pizarra, la cámara o el "
-              "navegador. Un módulo Windows 10 con Core i7 y 1 TB para trabajar como en "
-              "tu PC. Se cambia de uno a otro sin desenchufar nada.",
+        texto="Cables enredados, un proyector que tarda en prender y todos mirando una "
+              "pantalla chica. Con AIMAX es una sola pantalla lista para la videollamada, "
+              "la presentación y el gráfico al mismo tiempo. Reuniones que arrancan y "
+              "terminan más rápido.",
         img="fila-android-windows.webp",
         alt="Comparación entre una sala tradicional, con proyector y cables, y una sala con AIMAX",
         flip=False,
