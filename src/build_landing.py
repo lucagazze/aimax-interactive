@@ -659,12 +659,12 @@ FILAS = [
     ),
     dict(
         tag="Android + Windows",
-        titulo="Dos sistemas,<br>una sola pantalla.",
+        titulo="Dos formas de<br>hacer una reunión.",
         texto="Android 14 para arrancar en segundos y usar la pizarra, la cámara o el "
               "navegador. Un módulo Windows 10 con Core i7 y 1 TB para trabajar como en "
               "tu PC. Se cambia de uno a otro sin desenchufar nada.",
         img="fila-android-windows.webp",
-        alt="Comparación entre una sala con equipos separados y una sala con AIMAX, Android y Windows en una sola pantalla",
+        alt="Comparación entre una sala tradicional, con proyector y cables, y una sala con AIMAX",
         flip=False,
     ),
 ]
