@@ -70,12 +70,9 @@ IMAGENES = [
     "logo-cimaes.png",
     "logo-baravalle.png",
     "logo-dos-hermanos.png",
-    "logo-fapyd.png",
-    "logo-municipalidad.png",
-    "logo-blackswan.png",
-    "caso-fapyd.webp",
-    "caso-municipalidad.webp",
-    "caso-blackswan.webp",
+    "caso-educacion.webp",
+    "caso-empresas.webp",
+    "caso-arquitectura.webp",
     "og-image.jpg",
 ]
 
@@ -442,20 +439,11 @@ h2.una-linea { max-width: none; white-space: nowrap; }
   align-items: start; gap: 20px; margin-top: 34px;
 }
 .real-card {
-  position: relative; border-radius: 20px; overflow: hidden;
-  background: #0b0b0f; box-shadow: 0 24px 50px -30px rgba(0, 0, 0, 0.45);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 24px 50px -30px rgba(0, 0, 0, 0.45);
 }
-/* Sin object-fit ni aspect-ratio: la foto entra entera, sin recortar. */
+/* Sin object-fit ni aspect-ratio: la imagen entra entera, sin recortar. */
 .real-card img { width: 100%; height: auto; display: block; }
-.real-veil {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(11,11,15,0) 45%, rgba(11,11,15,0.82) 100%);
-}
-.real-label {
-  position: absolute; left: 18px; right: 18px; bottom: 16px; color: #fff;
-}
-.real-label b { display: block; font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; }
-.real-label span { display: block; margin-top: 4px; font-size: 13.5px; color: rgba(255,255,255,0.82); line-height: 1.4; }
 
 /* ── CTA final ──────────────────────────────────────────────────────────── */
 .cta { background: var(--violet); color: #fff; padding: 108px 0; text-align: center; }
@@ -581,9 +569,6 @@ LOGOS = [
     ("logo-tecnoteca.png",    "lg-tecnoteca",    "Tecnoteca Rosario",                 48),
     ("logo-cimaes.png",       "lg-cimaes",       "CIMAES Marcelloni",                 60),
     ("logo-baravalle.png",    "lg-baravalle",    "Baravalle &amp; Granados",          32),
-    ("logo-fapyd.png",        "lg-fapyd",        "FAPyD — Facultad de Arquitectura, Planeamiento y Diseño (UNR)", 40),
-    ("logo-municipalidad.png","lg-municipalidad","Municipalidad de Rosario",          48),
-    ("logo-blackswan.png",    "lg-blackswan",    "Black Swan Inversiones",            34),
 ]
 
 # Ancho de celda por breakpoint; el logo nunca puede pasar de celda - 16 px.
@@ -633,21 +618,17 @@ INSTALACIONES = [
     ("Tecnoteca Rosario", "Educación"),
     ("CIMAES", "Salud"),
     ("Baravalle &amp; Granados", "Estudio jurídico"),
-    ("FAPyD — Facultad de Arquitectura (UNR)", "Educación"),
-    ("Black Swan Inversiones", "Finanzas"),
-    ("Municipalidad de Rosario", "Gobierno"),
+    ("Santa Fe Bio", "Industria"),
+    ("Franco Pisso", "Capacitación"),
+    ("Buena Vista Desarrollos", "Desarrollo inmobiliario"),
+    ("Deal Buró", "Servicios"),
+    ("Proglobal", "Industria"),
 ]
 
 CASOS_REALES = [
-    ("caso-fapyd.webp", 900, 1200, "FAPyD — Facultad de Arquitectura (UNR)",
-     "Corrección de proyectos en AutoCAD, en vivo y con los alumnos alrededor "
-     "de la pantalla."),
-    ("caso-blackswan.webp", 1000, 667, "Black Swan Inversiones",
-     "Recorrido de propiedades con el equipo, tocando y ampliando directo "
-     "sobre la pantalla."),
-    ("caso-municipalidad.webp", 900, 1200, "Municipalidad de Rosario",
-     "Taller de dibujo accesible para personas mayores, en un dispositivo "
-     "táctil pensado para todos."),
+    ("caso-educacion.webp", 1856, 2304),
+    ("caso-empresas.webp", 1856, 2304),
+    ("caso-arquitectura.webp", 1856, 2304),
 ]
 
 FILAS = [
@@ -813,16 +794,15 @@ def build_body():
       'alt="Pantalla interactiva AIMAX instalada en una sala de reuniones"></div>')
     a('</div>')
     a('<div class="real-cases"><div class="real-cases-head">')
-    a('<h3>Así se usa en cada lugar</h3>')
-    a('<p>Fotos reales, tomadas en el momento. No son renders ni fotos de banco.</p>')
+    a('<h3>Tres formas de usarla todos los días</h3>')
+    a('<p>Educación, reuniones de trabajo y arquitectura: así se ve la pantalla '
+      'funcionando en cada escenario.</p>')
     a('</div>')
     a('<div class="real-grid">')
-    for img, w, h, nombre, texto in CASOS_REALES:
+    for img, w, h in CASOS_REALES:
         a('<div class="real-card"><img src="@@IMG:%s@@" width="%d" height="%d" '
-          'loading="lazy" decoding="async" alt="Pantalla AIMAX en uso — %s">'
-          '<div class="real-veil"></div>'
-          '<div class="real-label"><b>%s</b><span>%s</span></div></div>'
-          % (img, w, h, nombre, nombre, texto))
+          'loading="lazy" decoding="async" alt="Pantalla interactiva AIMAX en uso"></div>'
+          % (img, w, h))
     a('</div></div>')
     a('</div></section>')
 

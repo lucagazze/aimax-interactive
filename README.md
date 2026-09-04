@@ -100,7 +100,7 @@ Los otros dos scripts se corren solo cuando cambian los assets:
 
 ## Los logos del carrusel
 
-Diez de once salen de fuentes oficiales, ninguno recreado a mano:
+Los siete salen de fuentes oficiales, ninguno recreado a mano:
 
 | Logo                             | Origen                                        |
 |----------------------------------|-----------------------------------------------|
@@ -111,18 +111,27 @@ Diez de once salen de fuentes oficiales, ninguno recreado a mano:
 | Tecnoteca Rosario                | Facebook oficial                              |
 | CIMAES Marcelloni                | Facebook oficial                              |
 | Baravalle & Granados             | wordmark de `baravalle-granados.com.ar`       |
-| FAPyD (Facultad de Arquitectura, UNR) | foto de perfil de Facebook oficial (`facebook.com/fapyd`) |
-| Municipalidad de Rosario         | isologotipo oficial 2019, Wikimedia Commons   |
-| Black Swan Inversiones           | `bsinversiones.com`                           |
 
-Escuela Industrial, Baravalle y FAPyD solo publican su logo en blanco sobre
-fondo oscuro. Sobre fondo blanco van en negro, que es la variante oscura del
-mismo wordmark.
+Escuela Industrial y Baravalle solo publican su logo en blanco sobre fondo
+oscuro. Sobre fondo blanco van en negro, que es la variante oscura del mismo
+wordmark.
 
-FAPyD, Black Swan Inversiones y Municipalidad de Rosario tienen además una
-foto real de la pantalla en uso (`caso-fapyd.webp`, `caso-blackswan.webp`,
-`caso-municipalidad.webp`) en la sección "Así se usa en cada lugar", debajo
-de la lista de instalaciones.
+La lista de instalaciones (`INSTALACIONES` en `build_landing.py`) tiene
+además 5 nombres sin logo ni foto, solo texto — igual que Molino Dos
+Hermanos —: Santa Fe Bio, Franco Pisso, Buena Vista Desarrollos, Deal Buró
+y Proglobal, confirmados por Alejo el 2026-09-03.
+
+## Galería "Tres formas de usarla todos los días"
+
+Las 3 imágenes (`caso-educacion.webp`, `caso-empresas.webp`,
+`caso-arquitectura.webp`) son gráficos generados con IA (nano-banana pro,
+con `instalacion.webp` como referencia de producto para mantener el diseño
+real del equipo), no fotos de instalaciones ni de clientes puntuales.
+Hasta el 2026-09-03 esa sección mostraba 3 fotos reales atribuidas a FAPyD,
+Black Swan Inversiones y Municipalidad de Rosario — Alejo avisó que esas
+fotos no correspondían a esos casos de uso, así que se sacó la atribución
+y se reemplazaron por estos gráficos genéricos, sin nombre de cliente,
+hasta tener material real y verificado.
 
 ## Pendiente
 
@@ -131,6 +140,9 @@ de la lista de instalaciones.
       cliente. Por ahora aparece como texto abajo del carrusel.
 - [ ] **VSL definitiva.** Hoy corre el video del sitio actual de AIMAX,
       comprimido de 83 MB a 5,6 MB.
+- [ ] **Fotos reales de casos de uso.** La galería de "Tres formas de
+      usarla" hoy es IA genérica; reemplazar por fotos reales verificadas
+      cuando Alejo las confirme.
 - [x] **Testimonios.** Se sacó el bloque placeholder (2026-09-03, a pedido de
       Alejo); se puede volver a agregar más adelante con texto real.
 
